@@ -1,0 +1,91 @@
+<h1>{{ title }}</h1>
+<div class="row">
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-6 well">
+        <form class="form-horizontal" [formGroup]="userForm" (ngSubmit)="save()">
+            <fieldset>
+                <legend>
+                    Benutzer
+                </legend>
+                <div class="form-group label-floating">
+                    <label class="control-label" for="name">Name</label>
+                    <input [(ngModel)]="user.name" id="name" name="name" formControlName="name" type="text" class="form-control">
+                    <div *ngIf="userForm.controls.name.touched && userForm.controls.name.invalid" class="alert alert-danger">
+                        Name ist ein Pflichtfeld.
+                    </div>
+                </div>
+                <div class="form-group label-floating">
+                    <label class="control-label" for="email">Email</label>
+                    <input [(ngModel)]="user.email" id="email" #email formControlName="email" type="text" class="form-control">
+                    <div *ngIf="userForm.controls.email.touched && userForm.controls.email.errors?.required" class="alert alert-danger">
+                        Email-Adresse ist ein Pflichtfeld.
+                    </div>
+                    <div *ngIf="userForm.controls.email.touched && userForm.controls.email.errors?.invalidEmail" class="alert alert-danger">
+                        Bitte geben Sie eine korrekte Email-Adresse ein.
+                    </div>
+                </div>
+                <div class="form-group label-floating">
+                    <label class="control-label" for="phone">Telefon</label>
+                    <input [(ngModel)]="user.phone" id="phone" formControlName="phone" type="text" class="form-control">
+                    <div *ngIf="userForm.controls.phone.touched && userForm.controls.phone.errors?.pattern" class="alert alert-danger">
+                        Bitte geben Sie eine korrekte Telefonnummer ein.
+                    </div>
+                </div>
+                <div class="form-group label-floating">
+                    <label class="control-label" for="avatar">Avatar</label>
+                    <input [(ngModel)]="user.avatar" id="avatar" formControlName="avatar" type="text" class="form-control">
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>Adresse</legend>
+                <div class="form-group label-floating">
+                    <label class="control-label" for="street">Straße</label>
+                    <input [(ngModel)]="user.address.street" id="street" formControlName="street" type="text" class="form-control">
+                    <div *ngIf="userForm.controls.street.touched && userForm.controls.street.errors?.required" class="alert alert-danger">
+                        Straße ist ein Pflichtfeld.
+                    </div>
+                </div>
+                <div class="form-group label-floating">
+                    <label class="control-label" for="streetnumber">Hausnummer</label>
+                    <input [(ngModel)]="user.address.streetnumber" id="streetnumber" formControlName="streetnumber" type="text" class="form-control">
+                    <div *ngIf="userForm.controls.streetnumber.touched && userForm.controls.streetnumber.errors?.required" class="alert alert-danger">
+                        Hausnummer ist ein Pflichtfeld.
+                    </div>
+                    <div *ngIf="userForm.controls.streetnumber.touched && userForm.controls.streetnumber.errors?.pattern" class="alert alert-danger">
+                        Es sind nur Ziffern erlaubt.
+                    </div>
+                </div>
+                <div class="form-group label-floating">
+                    <label class="control-label" for="city">Stadt</label>
+                    <input [(ngModel)]="user.address.city" id="city" formControlName="city" type="text" class="form-control">
+                    <div *ngIf="userForm.controls.city.touched && userForm.controls.city.errors?.required" class="alert alert-danger">
+                        Stadt ist ein Pflichtfeld.
+                    </div>
+                    <div *ngIf="userForm.controls.city.touched && userForm.controls.city.errors?.pattern" class="alert alert-danger">
+                        Es sind nur Buchstaben erlaubt.
+                    </div>
+                </div>
+                <div class="form-group label-floating">
+                    <label class="control-label" for="zip">PLZ</label>
+                    <input [(ngModel)]="user.address.zipcode" id="zip" formControlName="zipcode" type="text" class="form-control">
+
+                    <div *ngIf="userForm.controls.zipcode.touched && userForm.controls.zipcode.errors?.required" class="alert alert-danger">
+                        PLZ ist ein Pflichtfeld.
+                    </div>
+                    <div *ngIf="userForm.controls.zipcode.touched && userForm.controls.zipcode.errors?.pattern" class="alert alert-danger">
+                        Es sind nur 5 Ziffern erlaubt.
+                    </div>
+                </div>
+            </fieldset>
+            <button routerLink="/users" class="btn btn-raised btn-danger">
+                Abbrechen
+            </button>
+            <button [disabled]="userForm.invalid" type="submit" class="btn btn-raised btn-primary">
+                Speichern
+            </button>
+        </form>
+    </div>
+    <div class="col-md-3">
+    </div>
+</div>

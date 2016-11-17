@@ -1,0 +1,11 @@
+<td>{{ user.name }}</td>
+<td>{{ user.email }}</td>
+<td>{{ user.address?.city }}</td>
+<td>
+    <a [routerLink]="['/users', user.id]">
+        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+    </a>
+</td>
+<td>
+    <i (click)="deleteUser()" class="fa fa-trash-o" aria-hidden="true"></i>
+</td>

@@ -1,0 +1,51 @@
+<h1>{{ title }}</h1>
+<div class="row">
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-6 well">
+        <form class="form-horizontal" [formGroup]="postForm" (ngSubmit)="save()">
+            <fieldset>
+                <legend>
+                    Post
+                </legend>
+                <div class="form-group">
+                    <label class="control-label" for="user">User</label>
+                    <select [(ngModel)]="post.userId" id="user" name="user" formControlName="user" class="form-control">
+                        <option *ngFor="let user of users" [ngValue]="user.id">{{ user.name }}</option>
+                    </select>
+                    <div *ngIf="postForm.controls.user.touched && postForm.controls.user.invalid" class="alert alert-danger">
+                        Bitte wähle einene Benutzer aus.
+                    </div>
+                </div>
+                <div class="form-group label-floating">
+                    <label class="control-label" for="title">Title</label>
+                    <input [(ngModel)]="post.title" id="title" name="title" formControlName="title" type="text" class="form-control">
+                    <div *ngIf="postForm.controls.title.touched && postForm.controls.title.invalid" class="alert alert-danger">
+                        Titel ist ein Pflichtfeld.
+                    </div>
+                </div>
+                <div class="form-group label-floating">
+                    <label class="control-label" for="body">Text</label>
+                    <textarea [(ngModel)]="post.body" id="body" #body formControlName="body" type="text" class="form-control" rows="5"></textarea>
+                    <div *ngIf="postForm.controls.body.touched && postForm.controls.body.errors?.required" class="alert alert-danger">
+                        Text ist ein Pflichtfeld.
+                    </div>
+                    <div *ngIf="postForm.controls.body.touched && postForm.controls.body.errors?.minlength" class="alert alert-danger">
+                        Es müssen wenigstens 50 Zeichen eingetragen werden.
+                    </div>
+                    <div *ngIf="postForm.controls.body.errors?.maxlength" class="alert alert-danger">
+                        Es sind maximal 150 Zeichen erlaubt.
+                    </div>
+                </div>
+            </fieldset>
+            <button routerLink="/posts" class="btn btn-raised btn-danger">
+                Abbrechen
+            </button>
+            <button [disabled]="postForm.invalid" type="submit" class="btn btn-raised btn-primary">
+                Speichern
+            </button>
+        </form>
+    </div>
+    <div class="col-md-3">
+    </div>
+</div>

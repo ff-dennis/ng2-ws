@@ -1,0 +1,17 @@
+<div class="container">
+	<div class="mt-1">
+		<h1>Posts</h1>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-8 offset-md-2">
+		<spinner [visible]="postsLoading"></spinner>
+		<pagination (page-changed)="onPageChanged($event)"></pagination>
+		<post *ngFor="let post of posts" [post]="post" (postDeleted)="removePost($event)"></post>
+	</div>
+	<div class="col-md-1">
+		<a routerLink="/posts/new" class="btn btn-primary float-xs-right">
+			<i class="fa fa-plus" aria-hidden="true"></i>
+		</a>
+	</div>
+</div>

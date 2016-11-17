@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="mt-1">
+        <h1>User</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <spinner [visible]="usersLoading"></spinner>
+        <table class="table table-bordered">
+            <thead class="bg-faded">
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>City</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of users" [user]="user" (userDeleted)="deleteUser($event)">
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-1">
+        <a routerLink="/users/new" class="btn btn-primary float-xs-right">
+            <i class="fa fa-plus" aria-hidden="true"></i>
+        </a>
+    </div>
+</div>
