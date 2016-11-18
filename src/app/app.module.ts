@@ -12,13 +12,15 @@ import { AppComponent }       from "./app";
 import { AgendaComponent} from './../agenda/agenda.component'
 import { NavbarComponent} from './../navbar/navbar.component'
 import { UsersOverviewComponent} from './../users/users-overview.component'
+import { UserComponent} from './../users/user.component';
+import { UserService} from './../users/user.service'
 
 
 @NgModule({
-  declarations: [AppComponent,AgendaComponent, NavbarComponent, UsersOverviewComponent],
+  declarations: [AppComponent,AgendaComponent, NavbarComponent, UsersOverviewComponent, UserComponent],
   imports: [BrowserModule,  RouterModule.forRoot(rootRouterConfig)],
   bootstrap: [AppComponent],
-  providers: []
+  providers: [UserService]
 })
 
 export class AppModule {
