@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import { User } from './user'
+import { User } from './user';
 
 @Injectable()
 export class UserService {
@@ -31,6 +31,15 @@ export class UserService {
                 zipcode: "60486",
             }
         };
-        return [christian, dennis];
+        let homeless: User = {
+			id: 4,
+			avatar: "",
+			email: "",
+			name: "Nobody",
+			phone: "",
+			address: undefined
+		};
+
+        return [christian, dennis, homeless];
     }
 }

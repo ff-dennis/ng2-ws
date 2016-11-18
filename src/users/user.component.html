@@ -4,3 +4,6 @@
 <td>
     {{user.email}}
 </td>
+<td [class.highlight]="user.address?.city === 'Frankfurt'">
+    {{user.address?.city}}
+</td>

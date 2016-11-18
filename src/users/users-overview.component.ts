@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core'
-import { User } from './user'
-import { UserService} from './user.service'
+import { Component, OnInit } from '@angular/core';
+import { User } from './user';
+import { UserService} from './user.service';
 
 @Component({
     selector: 'users-overview',
