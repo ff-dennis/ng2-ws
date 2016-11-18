@@ -1,0 +1,81 @@
+<form #userForm="ngForm">
+    <label class="control-label" for="name">Name</label>
+    <input type="text" [(ngModel)]="user.name" class="form-control" id="name" name="name" #name="ngModel" required>
+    <span *ngIf="name.untouched">untouched</span>
+    <span *ngIf="name.touched">touched</span>
+    <span *ngIf="name.pristine">pristine</span>
+    <span *ngIf="name.dirty">dirty</span>
+    <span *ngIf="name.valid">valid</span>
+    <span *ngIf="name.invalid">invalid</span>
+    <div *ngIf="name.touched && name.invalid" class="alert alert-danger">Name ist ein Pflichtfeld</div>
+
+    <input type="text" [(ngModel)]="user.phone" class="form-control" id="phone" name="phone" #phone="ngModel" 
+        required pattern="[0-9()-/ ]+">
+    <div *ngIf="phone.touched && phone.errors?.required" class="alert alert-danger">Telefon ist ein Pflichtfeld</div>
+    <div *ngIf="phone.touched && phone.errors?.pattern" class="alert alert-danger">Telefon ist ungültiges Format</div>
+</form>
+
+<div class="col-md-12 col-md-offset-1">
+        <button (click)="addAdress()" *ngIf="!user.address" class="btn btn-raised btn-primary">
+            Adresse hinzufügen
+        </button>
+        <form class="form-horizontal" [formGroup]="userAddressForm" *ngIf="!!user.address">
+            <fieldset>
+                <div class="row form-group">
+                    <div class="col-md-12">
+                        <legend>
+                            Adresse (Model driven)
+                        </legend>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="row form-group">
+                        <div class="col-md-12">
+                            <label class="control-label" for="street">Street</label>
+                            <input [(ngModel)]="user.address.street" id="street" formControlName="street" type="text" class="form-control">
+                            <div *ngIf="userAddressForm.controls.street.touched && userAddressForm.controls.street.errors?.required" class="alert alert-danger">
+                                Street ist ein Pflichtfeld.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-12">
+                            <label class="control-label" for="streetnumber">Streetnumber</label>
+                            <input [(ngModel)]="user.address.streetnumber" id="streetnumber" formControlName="streetnumber" type="text" class="form-control">
+                            <div *ngIf="userAddressForm.controls.streetnumber.touched && userAddressForm.controls.streetnumber.errors?.required" class="alert alert-danger">
+                                Streetnumber ist ein Pflichtfeld.
+                            </div>
+                            <div *ngIf="userAddressForm.controls.streetnumber.touched && userAddressForm.controls.streetnumber.errors?.pattern" class="alert alert-danger">
+                                Die Hausnummer darf nur aus Zahlen und Kleinbuchstaben bestehen.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-12">
+                            <label class="control-label" for="zipcode">Zipcode</label>
+                            <input [(ngModel)]="user.address.zipcode" id="zipcode" formControlName="zipcode" type="text" class="form-control">
+                            <div *ngIf="userAddressForm.controls.zipcode.touched && userAddressForm.controls.zipcode.errors?.required" class="alert alert-danger">
+                                Zipcode ist ein Pflichtfeld.
+                            </div>
+                            <div *ngIf="userAddressForm.controls.zipcode.touched && userAddressForm.controls.zipcode.errors?.pattern" class="alert alert-danger">
+                                Zipcode muss exakt aus 5 Ziffern bestehen.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-12">
+                            <label class="control-label" for="city">City</label>
+                            <input [(ngModel)]="user.address.city" id="city" formControlName="city" type="text" class="form-control">
+                            <div *ngIf="userAddressForm.controls.city.touched && userAddressForm.controls.city.errors?.required" class="alert alert-danger">
+                                City ist ein Pflichtfeld.
+                            </div>
+                            <div *ngIf="userAddressForm.controls.city.touched && userAddressForm.controls.city.errors?.pattern" class="alert alert-danger">
+                                Üngültige Zeichen verwendet.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
