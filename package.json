@@ -6,7 +6,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ff-dennis/angular2ws.git"
+    "url": "git+https://github.com/ff-dennis/ng2-ws.git"
   },
   "scripts": {
     "typings-install": "typings install",
